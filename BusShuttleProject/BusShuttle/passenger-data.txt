@@ -1,4 +1,2 @@
-Music:5
-Architecture:10
-Science:4
-Engineering:2
+1:8
+2:6
