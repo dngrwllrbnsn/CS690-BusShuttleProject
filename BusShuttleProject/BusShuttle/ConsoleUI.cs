@@ -1,5 +1,6 @@
 namespace BusShuttle;
 
+using Spectre.Console;
 //UI class incorporating file saver class
 //incorporate file saver here instead of in Main!!!
 public class ConsoleUI{
@@ -16,7 +17,18 @@ public class ConsoleUI{
     //string mode = Console.ReadLine();
 
     //With a function AskForInput:
-        string mode = AskForInput("Please select mode (driver OR manager): ");
+        // boring, no fancy ui user input
+        // string mode = AskForInput("Please select mode (driver OR manager): ");
+
+        // Fancy UI version of user input
+        var mode = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("Please select [green]mode [/]")
+                //.PageSize(10)
+                //.MoreChoicesText("[grey](Move up and down to reveal more fruits)[/]")
+                .AddChoices(new[] {
+                    "driver", "manager"
+                }));
 
         if(mode=="driver"){
 
@@ -48,7 +60,18 @@ public class ConsoleUI{
                 //command = Console.ReadLine();
 
                 //with function AskForInput:
-                command = AskForInput("Enter command (end OR continue): ");
+                //boring ui version
+                //command = AskForInput("Enter command (end OR continue): ");
+
+                // Fancy UI version of user input
+                command = AnsiConsole.Prompt(
+                    new SelectionPrompt<string>()
+                        .Title("Do you want to [green]continue[/] or [red]end[/]? ")
+                        //.PageSize(10)
+                        //.MoreChoicesText("[grey](Move up and down to reveal more fruits)[/]")
+                        .AddChoices(new[] {
+                            "continue", "end"
+                        }));
            
             } while (command!="end");
 
